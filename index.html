@@ -1,30 +1,140 @@
-<h2>Feature: New Dashboard UI</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Preview Deployment</title>
 
-<label>
-  <input type="checkbox" id="toggleFeature" />
-  Enable New Feature
-</label>
-
-<div id="oldUI">
-  <p>Old Dashboard View</p>
-</div>
-
-<div id="newUI" style="display:none;">
-  <p style="color:green;">✨ New Dashboard View Enabled!</p>
-</div>
-
-<script>
-  const toggle = document.getElementById("toggleFeature");
-  const oldUI = document.getElementById("oldUI");
-  const newUI = document.getElementById("newUI");
-
-  toggle.addEventListener("change", () => {
-    if (toggle.checked) {
-      oldUI.style.display = "none";
-      newUI.style.display = "block";
-    } else {
-      oldUI.style.display = "block";
-      newUI.style.display = "none";
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #0052CC;
     }
-  });
-</script>
+
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h1 { color: #0052CC; }
+
+    .meta {
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .toggle {
+      margin: 20px 0;
+      padding: 10px;
+      background: #f4f5f7;
+      border-radius: 8px;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    /* OLD UI */
+    .old .card {
+      background: #eee;
+      color: #333;
+    }
+
+    /* NEW UI */
+    .new .card {
+      background: linear-gradient(135deg, #4CAF50, #2E7D32);
+      color: white;
+      transform: scale(1.02);
+    }
+
+    .new .card span {
+      font-size: 24px;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 6px;
+      background: green;
+      color: white;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🚀 Preview: KAN-16</h1>
+
+    <div class="meta">
+      <p>Branch: <strong>KAN-16</strong></p>
+      <p>Status: <span style="color:green;">Deployed Successfully</span></p>
+      <p>Feature: <strong>New Analytics Dashboard</strong></p>
+    </div>
+
+    <div class="toggle">
+      <label>
+        <input type="checkbox" id="featureToggle"/>
+        Enable New Dashboard
+        <span class="badge">NEW</span>
+      </label>
+    </div>
+
+    <!-- OLD DASHBOARD -->
+    <div id="oldUI" class="dashboard old">
+      <div class="card">Users<br><strong>1,200</strong></div>
+      <div class="card">Revenue<br><strong>$8,400</strong></div>
+      <div class="card">Errors<br><strong>23</strong></div>
+    </div>
+
+    <!-- NEW DASHBOARD -->
+    <div id="newUI" class="dashboard new" style="display:none;">
+      <div class="card">
+        Users
+        <span>1,200 ↑</span>
+      </div>
+      <div class="card">
+        Revenue
+        <span>$8,400 ↑</span>
+      </div>
+      <div class="card">
+        Errors
+        <span>23 ↓</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById("featureToggle");
+    const oldUI = document.getElementById("oldUI");
+    const newUI = document.getElementById("newUI");
+
+    toggle.addEventListener("change", () => {
+      if (toggle.checked) {
+        oldUI.style.display = "none";
+        newUI.style.display = "grid";
+      } else {
+        oldUI.style.display = "grid";
+        newUI.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
